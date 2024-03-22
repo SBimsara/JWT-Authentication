@@ -17,29 +17,29 @@ public class JwtAuthenticationApplication {
 		SpringApplication.run(JwtAuthenticationApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner commandLineRunner(
-			AuthenticationService service
-	) {
-		return args -> {
-			var admin = RegisterRequest.builder()
-					.firstname("admin")
-					.lastname("admin")
-					.email("admin@gmail.com")
-					.password("admin")
-					.role(ADMIN)
-					.build();
-			System.out.println("Admin token: " + service.register(admin).getToken());
-
-			var manager = RegisterRequest.builder()
-					.firstname("manager")
-					.lastname("manager")
-					.email("manager@gmail.com")
-					.password("manager")
-					.role(MANAGER)
-					.build();
-			System.out.println("Manager token: " + service.register(manager).getToken());
-		};
-	}
+//	@Bean
+//	public CommandLineRunner commandLineRunner(
+//			AuthenticationService service
+//	) {
+//		return args -> {
+//			var admin = RegisterRequest.builder()
+//					.firstname("admin")
+//					.lastname("admin")
+//					.email("admin@gmail.com")
+//					.password("admin")
+//					.role(ADMIN)
+//					.build();
+//			System.out.println("Admin token: " + service.register(admin).getAccessToken());
+//
+//			var manager = RegisterRequest.builder()
+//					.firstname("manager")
+//					.lastname("manager")
+//					.email("manager@gmail.com")
+//					.password("manager")
+//					.role(MANAGER)
+//					.build();
+//			System.out.println("Manager token: " + service.register(manager).getAccessToken());
+//		};
+//	}
 }
 

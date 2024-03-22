@@ -27,6 +27,8 @@ public class JwtService {
     @Value("${application.security.jwt.refresh-token.expiration-ms}")
     private long refreshExpirationInMs;
 
+    @Value("${application.security.jwt.clock-skew-ms}")
+    private long clockSkewInMs;
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -58,7 +60,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+expirationInMs))
+                .setExpiration(new Date(System.currentTimeMillis() + expirationInMs))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -80,6 +82,7 @@ public class JwtService {
         return Jwts
                 .parserBuilder()
                 .setSigningKey(getSignInKey())
+                .setAllowedClockSkewSeconds(clockSkewInMs)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
