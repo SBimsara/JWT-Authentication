@@ -19,6 +19,7 @@ public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
+    // end-point to register a new user
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
@@ -26,6 +27,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
+    // end-point to authenticate a user
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request
@@ -33,6 +35,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
+    // end-point to generate a new access token
     @PostMapping("/refresh-token")
     public void refreshToken(
             HttpServletRequest request,

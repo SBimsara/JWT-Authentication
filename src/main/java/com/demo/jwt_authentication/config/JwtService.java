@@ -40,10 +40,10 @@ public class JwtService {
     }
 
     public String generateToken(
-            Map<String, Object> extractClaims,
+            Map<String, Object> extraClaims,
             UserDetails userDetails
     ){
-        return buildJwtToken(extractClaims, userDetails, jwtExpirationInMs);
+        return buildJwtToken(extraClaims, userDetails, jwtExpirationInMs);
     }
 
     public String generateRefreshToken(
@@ -52,10 +52,10 @@ public class JwtService {
         return buildJwtToken(new HashMap<>(), userDetails, refreshExpirationInMs);
     }
 
-    private String buildJwtToken(Map<String, Object> extractClaims, UserDetails userDetails, long expirationInMs) {
+    private String buildJwtToken(Map<String, Object> extraClaims, UserDetails userDetails, long expirationInMs) {
         return Jwts
                 .builder()
-                .setClaims(extractClaims)
+                .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+expirationInMs))
