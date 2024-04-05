@@ -38,6 +38,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 
+    private Boolean locked; // for security reasons
+    private Boolean enabled; // for operational and administrative reasons
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return role.getAuthorities();
