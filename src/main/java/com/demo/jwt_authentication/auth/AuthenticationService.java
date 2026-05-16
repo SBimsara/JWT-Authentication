@@ -5,6 +5,7 @@ import com.demo.jwt_authentication.config.JwtService;
 import com.demo.jwt_authentication.token.Token;
 import com.demo.jwt_authentication.token.TokenRepo;
 import com.demo.jwt_authentication.token.TokenType;
+import com.demo.jwt_authentication.user.Role;
 import com.demo.jwt_authentication.user.User;
 import com.demo.jwt_authentication.user.UserRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,10 +45,10 @@ public class AuthenticationService {
                 .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
+                .role(Role.NOTASSIGNED)
                 .emailVerified(false)
-                .enabled(true)
                 .locked(false)
+                .enabled(true)
                 .build();
 
         var savedUser = userRepo.save(user);

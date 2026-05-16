@@ -15,7 +15,8 @@ import static com.demo.jwt_authentication.user.Permission.ADMIN_READ;
 
 @RequiredArgsConstructor
 public enum Role {
-
+        
+    NOTASSIGNED(Collections.emptySet()),
     USER(Collections.emptySet()),
     ADMIN(
             Set.of(
