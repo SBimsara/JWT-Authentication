@@ -1,6 +1,5 @@
 package com.demo.jwt_authentication.auth;
 
-import com.demo.jwt_authentication.user.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,10 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequest {
-
-    private String firstname;
-    private String lastname;
+public class ResendVerificationRequest {
     private String email;
-    private String password;
 }
