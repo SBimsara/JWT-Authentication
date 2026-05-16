@@ -1,5 +1,6 @@
 package com.demo.jwt_authentication.auth;
 
+import com.demo.jwt_authentication.auth.UserDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,5 +18,10 @@ public class AuthenticationResponse {
 
     @JsonProperty("refresh_token")
     private String refreshToken;
+
+    private UserDto user;
+
+    @JsonProperty("verification_sent")
+    private Boolean verificationSent;
 
 }

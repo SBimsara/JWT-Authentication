@@ -3,13 +3,20 @@ package com.demo.jwt_authentication.auth;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/auth")
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
@@ -17,7 +24,7 @@ public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
-    // end-point to register a new user
+    // end-point to register a new user and send OTP
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
@@ -33,6 +40,20 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
+    @PostMapping("/verify-email")
+    public ResponseEntity<AuthenticationResponse> verifyEmail(
+            @RequestBody VerifyEmailRequest request
+    ){
+        return ResponseEntity.ok(authenticationService.verifyEmail(request));
+    }
+
+    @PostMapping("/resend-verification")
+    public ResponseEntity<AuthenticationResponse> resendVerification(
+            @RequestBody ResendVerificationRequest request
+    ){
+        return ResponseEntity.ok(authenticationService.resendVerification(request));
+    }
+
     // end-point to generate a new access token
     @PostMapping("/refresh-token")
     public void refreshToken(
@@ -40,5 +61,20 @@ public class AuthenticationController {
             HttpServletResponse response
     ) throws IOException {
         authenticationService.refreshToken(request, response);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<UserDto> getCurrentUser(Authentication authentication) {
+        if (authentication == null || authentication.getName() == null) {
+            return ResponseEntity.status(401).build();
+        }
+        var userDto = authenticationService.getCurrentUser(authentication.getName());
+        return ResponseEntity.ok(userDto);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(HttpServletRequest request) {
+        authenticationService.logout(request);
+        return ResponseEntity.ok().build();
     }
 }
