@@ -1,6 +1,7 @@
-package com.demo.jwt_authentication.auth;
+package com.demo.jwt_authentication.dto;
 
-import com.demo.jwt_authentication.user.Role;
+import com.demo.jwt_authentication.entity.Role;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

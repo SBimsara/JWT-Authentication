@@ -1,7 +1,10 @@
-package com.demo.jwt_authentication.token;
+package com.demo.jwt_authentication.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import com.demo.jwt_authentication.repo.ConfirmationTokenRepo;
+import com.demo.jwt_authentication.token.ConfirmationToken;
 
 @Service
 @AllArgsConstructor

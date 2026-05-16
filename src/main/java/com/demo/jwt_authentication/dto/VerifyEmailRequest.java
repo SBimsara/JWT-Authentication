@@ -1,4 +1,4 @@
-package com.demo.jwt_authentication.auth;
+package com.demo.jwt_authentication.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
-
+public class VerifyEmailRequest {
     private String email;
-    String password;
+    private String otp;
 }

@@ -1,14 +1,15 @@
 package com.demo.jwt_authentication;
 
-import com.demo.jwt_authentication.auth.AuthenticationService;
-import com.demo.jwt_authentication.auth.RegisterRequest;
+import static com.demo.jwt_authentication.entity.Role.ADMIN;
+import static com.demo.jwt_authentication.entity.Role.MANAGER;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import static com.demo.jwt_authentication.user.Role.ADMIN;
-import static com.demo.jwt_authentication.user.Role.MANAGER;
+import com.demo.jwt_authentication.dto.RegisterRequest;
+import com.demo.jwt_authentication.service.AuthenticationService;
 
 @SpringBootApplication
 public class JwtAuthenticationApplication {

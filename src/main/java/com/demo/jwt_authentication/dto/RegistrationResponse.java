@@ -1,4 +1,4 @@
-package com.demo.jwt_authentication.auth;
+package com.demo.jwt_authentication.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class ResendVerificationRequest {
-    private String email;
+@AllArgsConstructor
+public class RegistrationResponse {
+    private String message;
+
 }

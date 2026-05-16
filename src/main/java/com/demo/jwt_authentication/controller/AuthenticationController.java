@@ -1,4 +1,4 @@
-package com.demo.jwt_authentication.auth;
+package com.demo.jwt_authentication.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,6 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.demo.jwt_authentication.dto.AuthenticationRequest;
+import com.demo.jwt_authentication.dto.AuthenticationResponse;
+import com.demo.jwt_authentication.dto.RegisterRequest;
+import com.demo.jwt_authentication.dto.ResendVerificationRequest;
+import com.demo.jwt_authentication.dto.UserDTO;
+import com.demo.jwt_authentication.dto.VerifyEmailRequest;
+import com.demo.jwt_authentication.service.AuthenticationService;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -63,7 +72,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<UserDto> getCurrentUser(Authentication authentication) {
+    public ResponseEntity<UserDTO> getCurrentUser(Authentication authentication) {
         if (authentication == null || authentication.getName() == null) {
             return ResponseEntity.status(401).build();
         }

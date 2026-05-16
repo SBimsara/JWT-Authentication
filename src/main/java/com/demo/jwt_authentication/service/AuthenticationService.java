@@ -1,13 +1,21 @@
-package com.demo.jwt_authentication.auth;
+package com.demo.jwt_authentication.service;
 
 import com.demo.jwt_authentication.config.EmailService;
 import com.demo.jwt_authentication.config.JwtService;
-import com.demo.jwt_authentication.token.Token;
-import com.demo.jwt_authentication.token.TokenRepo;
+import com.demo.jwt_authentication.dto.AuthenticationRequest;
+import com.demo.jwt_authentication.dto.AuthenticationResponse;
+import com.demo.jwt_authentication.dto.RegisterRequest;
+import com.demo.jwt_authentication.dto.ResendVerificationRequest;
+import com.demo.jwt_authentication.dto.UserDTO;
+import com.demo.jwt_authentication.dto.VerifyEmailRequest;
+import com.demo.jwt_authentication.entity.EmailVerificationToken;
+import com.demo.jwt_authentication.entity.Role;
+import com.demo.jwt_authentication.entity.Token;
+import com.demo.jwt_authentication.entity.User;
+import com.demo.jwt_authentication.repo.EmailVerificationTokenRepo;
+import com.demo.jwt_authentication.repo.TokenRepo;
+import com.demo.jwt_authentication.repo.UserRepo;
 import com.demo.jwt_authentication.token.TokenType;
-import com.demo.jwt_authentication.user.Role;
-import com.demo.jwt_authentication.user.User;
-import com.demo.jwt_authentication.user.UserRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -57,7 +65,7 @@ public class AuthenticationService {
 
         return AuthenticationResponse.builder()
                 .verificationSent(true)
-                .user(toUserDto(savedUser))
+                .userDTO(toUserDto(savedUser))
                 .build();
     }
 
@@ -85,7 +93,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
-                .user(toUserDto(user))
+                .userDTO(toUserDto(user))
                 .build();
     }
 
@@ -114,7 +122,7 @@ public class AuthenticationService {
 
         return AuthenticationResponse.builder()
                 .verificationSent(false)
-                .user(toUserDto(user))
+                .userDTO(toUserDto(user))
                 .build();
     }
 
@@ -130,7 +138,7 @@ public class AuthenticationService {
 
         return AuthenticationResponse.builder()
                 .verificationSent(true)
-                .user(toUserDto(user))
+                .userDTO(toUserDto(user))
                 .build();
     }
 
@@ -185,7 +193,7 @@ public class AuthenticationService {
             var authResponse = AuthenticationResponse.builder()
                     .accessToken(accessToken)
                     .refreshToken(refreshToken)
-                    .user(toUserDto(user))
+                    .userDTO(toUserDto(user))
                     .build();
             new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
         } else {
@@ -193,7 +201,7 @@ public class AuthenticationService {
         }
     }
 
-    public UserDto getCurrentUser(String email) {
+    public UserDTO getCurrentUser(String email) {
         var user = userRepo.findByEmail(email).orElseThrow();
         return toUserDto(user);
     }
@@ -230,8 +238,8 @@ public class AuthenticationService {
         return String.valueOf(code);
     }
 
-    private UserDto toUserDto(User user) {
-        return UserDto.builder()
+    private UserDTO toUserDto(User user) {
+        return UserDTO.builder()
                 .id(user.getId())
                 .firstname(user.getFirstname())
                 .lastname(user.getLastname())

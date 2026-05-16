@@ -1,13 +1,13 @@
 package com.demo.jwt_authentication.config;
 
-import com.demo.jwt_authentication.token.TokenRepo;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
+
+import com.demo.jwt_authentication.repo.TokenRepo;
 
 @Service
 @RequiredArgsConstructor

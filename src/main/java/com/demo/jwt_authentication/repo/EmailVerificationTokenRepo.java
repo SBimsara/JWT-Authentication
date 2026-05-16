@@ -1,7 +1,9 @@
-package com.demo.jwt_authentication.auth;
+package com.demo.jwt_authentication.repo;
 
-import com.demo.jwt_authentication.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.demo.jwt_authentication.entity.EmailVerificationToken;
+import com.demo.jwt_authentication.entity.User;
 
 import java.util.Optional;
 

@@ -15,11 +15,10 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
+import static com.demo.jwt_authentication.entity.Permission.*;
+import static com.demo.jwt_authentication.entity.Role.ADMIN;
+import static com.demo.jwt_authentication.entity.Role.MANAGER;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.logout;
-
-import static com.demo.jwt_authentication.user.Permission.*;
-import static com.demo.jwt_authentication.user.Role.ADMIN;
-import static com.demo.jwt_authentication.user.Role.MANAGER;
 
 
 @Configuration

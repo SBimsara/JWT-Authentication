@@ -1,7 +1,8 @@
-package com.demo.jwt_authentication.token;
+package com.demo.jwt_authentication.entity;
 
 
-import com.demo.jwt_authentication.user.User;
+import com.demo.jwt_authentication.token.TokenType;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

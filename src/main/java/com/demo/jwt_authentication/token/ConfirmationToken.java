@@ -1,12 +1,13 @@
 package com.demo.jwt_authentication.token;
 
-import com.demo.jwt_authentication.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+
+import com.demo.jwt_authentication.entity.User;
 
 @Getter
 @Setter

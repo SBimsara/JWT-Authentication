@@ -1,7 +1,9 @@
-package com.demo.jwt_authentication.token;
+package com.demo.jwt_authentication.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.demo.jwt_authentication.entity.Token;
 
 import java.util.List;
 import java.util.Optional;

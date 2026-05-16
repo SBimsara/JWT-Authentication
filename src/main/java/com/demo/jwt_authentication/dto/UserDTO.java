@@ -1,6 +1,5 @@
-package com.demo.jwt_authentication.auth;
+package com.demo.jwt_authentication.dto;
 
-import com.demo.jwt_authentication.user.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,11 +7,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import com.demo.jwt_authentication.entity.Role;
+
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
-public class UserDto {
+public class UserDTO {
     private Integer id;
     private String firstname;
     private String lastname;
